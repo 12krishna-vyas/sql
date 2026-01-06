@@ -53,3 +53,21 @@ where amount = (select amount from payment where payment_id = 2 or payment_id =3
 -- using in
 select * from payment
 where amount in (select amount from payment where payment_id = 2 or payment_id =3);
+
+-- =any (0.99 , 5.99)
+select * from payment
+where amount >any (select amount from payment where payment_id = 2 or payment_id =3);
+
+-- all 
+select * from payment
+where amount > all (select amount from payment where payment_id = 2 or payment_id =3);
+
+-- Which country has a population that is more than United Kingdom but less than 
+-- Germany? Show the name and the population.
+select name, population from world 
+    where population > (select population from world where name='United Kingdom')
+and population<(select population from world where name='Germany')
+
+-- assingmnet 
+-- what are correlated subquery and how it work
+-- what are constrains in sql
